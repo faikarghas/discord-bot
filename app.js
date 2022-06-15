@@ -1,5 +1,9 @@
-
+const express = require('express')  
 const { Client, Intents, Collection, Constants } = require('discord.js');
+
+const app = express()
+
+
 
 const client = new Client({ 
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS,Intents.FLAGS.GUILD_MEMBERS ],
@@ -84,6 +88,13 @@ client.on('messageCreate', async message => {
 
 });
 
+app.get('/', (req, res) => {
+    res.status(200).send('Paranoid Slay Discord Bot!')
+})
 
-client.login(TOKEN);
+// serve
+app.listen(2611, () => {
+    console.log('OKE');
+    client.login(TOKEN);
+})
 
