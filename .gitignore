@@ -126,3 +126,6 @@ package-lock.json
 
 # Next.js static build files
 out/
+
+#config
+config.json
