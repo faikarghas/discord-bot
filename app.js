@@ -1,90 +1,90 @@
 const express = require('express')  
-// const { Client, Intents, Collection, Constants } = require('discord.js');
+const { Client, Intents, Collection, Constants } = require('discord.js');
 
 const app = express()
 
-// const client = new Client({ 
-//     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS,Intents.FLAGS.GUILD_MEMBERS ],
-//     partials: ['MESSAGE','CHANNEL','REACTION']
-// });
-// const {TOKEN,welcomeChannelId,guildId} = require('./config.js')
-// const generateImage = require('./generateImage')
-// const levels = require('./commands/levels.js')
+const client = new Client({ 
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS,Intents.FLAGS.GUILD_MEMBERS ],
+    partials: ['MESSAGE','CHANNEL','REACTION']
+});
+const {TOKEN,welcomeChannelId,guildId} = require('./config.js')
+const generateImage = require('./generateImage')
+const levels = require('./commands/levels.js')
 
-// const fs = require('fs');
+const fs = require('fs');
 
-// client.commands = new Collection();
+client.commands = new Collection();
 
-// const commandFiles = fs.readdirSync('./commands').filter(file=>{
-//     return file.endsWith('.js')
-// })
-// for (const file of commandFiles) {
-//     const command = require(`./commands/${file}`);
-//     client.commands.set(command.name, command)
-// }
+const commandFiles = fs.readdirSync('./commands').filter(file=>{
+    return file.endsWith('.js')
+})
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command)
+}
 
-// client.once('ready', ()=>{
-//     console.log('bot ready');
+client.once('ready', ()=>{
+    console.log('bot ready');
 
-//     levels(client)
+    levels(client)
 
-//     // guild.commands.delete('975077471181471776')
-//     // .then(console.log)
-//     // .catch(console.error);
-// })
+    // guild.commands.delete('975077471181471776')
+    // .then(console.log)
+    // .catch(console.error);
+})
 
-// // INTERNAL COMMAND
-// client.on('interactionCreate', async (interaction) => {
-// 	if (!interaction.isCommand()) return;
-// 	const { commandName,options } = interaction;
+// INTERNAL COMMAND
+client.on('interactionCreate', async (interaction) => {
+	if (!interaction.isCommand()) return;
+	const { commandName,options } = interaction;
 
-//     const command = client.commands.get(interaction.commandName);
-//     let option = interaction.options.get('num')
+    const command = client.commands.get(interaction.commandName);
+    let option = interaction.options.get('num')
 
-//     switch (commandName) {
-//         case 'clear':
-//             await command.execute(interaction,option.value)
-//             break;
-//         case 'server':
-//             await interaction.reply('Server info.');
-//             break;
-//         case 'user':
-//             await interaction.reply('User info.');
-//             break;
-//         default:
-//             break;
-//     }
-// });
+    switch (commandName) {
+        case 'clear':
+            await command.execute(interaction,option.value)
+            break;
+        case 'server':
+            await interaction.reply('Server info.');
+            break;
+        case 'user':
+            await interaction.reply('User info.');
+            break;
+        default:
+            break;
+    }
+});
 
-// // WELCOME BOT
-// client.on('guildMemberAdd', async member => {
-//     const img = await generateImage(member)
-//     member.guild.channels.cache.get(welcomeChannelId).send({
-//         content:`<@${member.id}> Welcome to Paranoid Slay!`,
-//         files: [img]
-//     })
-// })
+// WELCOME BOT
+client.on('guildMemberAdd', async member => {
+    const img = await generateImage(member)
+    member.guild.channels.cache.get(welcomeChannelId).send({
+        content:`<@${member.id}> Welcome to Paranoid Slay!`,
+        files: [img]
+    })
+})
 
 
-// const prefix = "!";
+const prefix = "!";
 
-// client.on('messageCreate', async message => {
-//     if (!message.content.startsWith(prefix) || message.author.bot) return;
+client.on('messageCreate', async message => {
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-//     const command = message.content.slice(prefix.length)
-//     const args = message.content.substring(prefix.length).split(' ')
-//     switch (args[0]) {
-//         case 'test':
-//             client.commands.get('test').execute(message)
-//             break;
-//         case 'verify':
-//             client.commands.get('verify').execute(message,0,client)
-//             break;
-//         default:
-//             break;
-//     }
+    const command = message.content.slice(prefix.length)
+    const args = message.content.substring(prefix.length).split(' ')
+    switch (args[0]) {
+        case 'test':
+            client.commands.get('test').execute(message)
+            break;
+        case 'verify':
+            client.commands.get('verify').execute(message,0,client)
+            break;
+        default:
+            break;
+    }
 
-// });
+});
 
 app.get('/', (req, res) => {
     res.status(200).send('Paranoid Slay Discord Bot!')
@@ -93,6 +93,6 @@ app.get('/', (req, res) => {
 // serve
 app.listen(2611, () => {
     console.log('OKE');
-    // client.login(TOKEN);
+    client.login(TOKEN);
 })
 
