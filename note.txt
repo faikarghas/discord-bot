@@ -1,8 +1,3 @@
-"token": "OTYwMTA2NDUxOTI4NTEwNDk0.GN4qMQ.CDH99WswH4bydkJZ_McxRg4CMpVtGY-OEzGaSI",
-"guildId":"648043977530015753",
-"clientId":"960106451928510494"
-
-
 const guild = client.guilds.cache.get(guildId)
     let commands
 
