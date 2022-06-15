@@ -91,7 +91,7 @@ app.get('/', (req, res) => {
 })
 
 // serve
-app.listen(2611, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('OKE');
     client.login(TOKEN);
 })
