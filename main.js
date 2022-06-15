@@ -5,7 +5,7 @@ const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES,Intents.FLAGS.GUILD_MESSAGE_REACTIONS,Intents.FLAGS.GUILD_MEMBERS ],
     partials: ['MESSAGE','CHANNEL','REACTION']
 });
-const {token,welcomeChannelId,guildId} = require('./config.json')
+const {TOKEN,welcomeChannelId,guildId} = require('./config.js')
 const generateImage = require('./generateImage')
 const levels = require('./commands/levels.js')
 
@@ -38,7 +38,6 @@ client.on('interactionCreate', async (interaction) => {
 
     const command = client.commands.get(interaction.commandName);
     let option = interaction.options.get('num')
-    console.log(interaction);
 
     switch (commandName) {
         case 'clear':
@@ -86,5 +85,5 @@ client.on('messageCreate', async message => {
 });
 
 
-client.login(token);
+client.login(TOKEN);
 

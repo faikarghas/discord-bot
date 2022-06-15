@@ -1,8 +1,9 @@
 module.exports = (client) => {
     client.on('messageCreate', async message => {
-        console.log(message)
         const {guildId,author} = message
-        addEXP(guildId,author[id])
+        if (author.bot !== true) {
+            addEXP(guildId,author.id)
+        }
     })
 }
 
@@ -19,9 +20,9 @@ const addEXP =  (guildId,userId,xpToAdd,message) => {
     }
 
     const {nama,exp,level} = result
-    const needed = level(level)
+    const needed = getNeededEXP
 
-    if (xp > needed) {
+    if (exp > needed) {
         ++level
         xp -= needed
     }
