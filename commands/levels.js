@@ -7,8 +7,13 @@ module.exports = (client) => {
     })
 }
 
+const db = require('../db.js')
+
 const addEXP =  (guildId,userId,xpToAdd,message) => {
-    console.log(guildId,userId);
+    let sql = `select * from users`
+    db.query(sql,(err,result)=>{
+        if (!err) res.status(201).send(result)
+    })
 
     let getNeededEXP = level => level * level * 100
 
