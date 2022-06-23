@@ -6,7 +6,7 @@ module.exports={
     description:'this is verify command',
     async execute(message, args,client){
         const OWNER_ROLES_ID = '973233311637987348'
-        const channel = '989575114297323531' //'973054706802892870'
+        const channel = '973054706802892870'
         const memberRole = '981128578995458119'
         const verifyEmoji = '💊'
 
