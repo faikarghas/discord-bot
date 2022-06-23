@@ -11,6 +11,7 @@ module.exports={
             } else {
                 message.channel.bulkDelete(args,true)
                 await message.reply('cleared')
+                console.log('cleared message');
             }
         } else {
             message.reply('you cant send this command')

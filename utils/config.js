@@ -13,6 +13,7 @@ module.exports = {
     fanArtChatChannelId:"984092370670874624",
     memesChatChannelId:"984092408121806988",
     suggestionChatChannelId:"984093323679662220",
+    rankCheckChannelId:"984092526187249664",
     DB_HOST: process.env.DB_HOST,
     DB_USER: process.env.DB_USER,
     DB_PASS: process.env.DB_PASS,

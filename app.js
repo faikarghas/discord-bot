@@ -74,8 +74,8 @@ client.on('messageCreate', async message => {
     const command = message.content.slice(prefix.length)
     const args = message.content.substring(prefix.length).split(' ')
     switch (args[0]) {
-        case 'test':
-            client.commands.get('test').execute(message)
+        case 'rank':
+            client.commands.get('rank').execute(message)
             break;
         case 'verify':
             client.commands.get('verify').execute(message,0,client)
